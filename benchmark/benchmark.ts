@@ -2,6 +2,7 @@ import util from 'node:util'
 import { dump } from '@poppinss/dumper/console'
 import columnify from 'columnify'
 import prettyjson from 'prettyjson'
+import prettyOutputV1 from 'prettyoutput'
 
 import { prettyOutput } from '../src/index.js'
 import { makeElement } from './fixture.js'
@@ -33,6 +34,12 @@ function runFunction(loopCount: number, fn: () => void): number[] {
 function runPrettyOutput(element: unknown, loopCount: number): number[] {
     return runFunction(loopCount, () => {
         prettyOutput(element, { noColor: true, maxDepth: 100 })
+    })
+}
+
+function runPrettyOutputV1(element: unknown, loopCount: number): number[] {
+    return runFunction(loopCount, () => {
+        prettyOutputV1(element, { noColor: true, maxDepth: 100 })
     })
 }
 
@@ -74,17 +81,20 @@ function makeBench(weights: Weights, levels: number, keysCount: number, loopCoun
     const element = makeElement(weights, levels, keysCount)
 
     const prettyOutputDiffs = runPrettyOutput(element, loopCount)
+    const prettyOutputV1Diffs = runPrettyOutputV1(element, loopCount)
     const prettyJsonDiffs = runPrettyJson(element, loopCount)
     const utilInspectDiffs = runUtilInspect(element, loopCount)
     const dumperDiffs = runDumper(element, loopCount)
 
     const prettyOutputStats = stats(prettyOutputDiffs)
+    const prettyOutputV1Stats = stats(prettyOutputV1Diffs)
     const prettyJsonStats = stats(prettyJsonDiffs)
     const utilInspectStats = stats(utilInspectDiffs)
     const dumperStats = stats(dumperDiffs)
 
     const result = [
-        { name: 'pretty-output', ...prettyStats(prettyOutputStats) },
+        { name: 'prettyoutput', ...prettyStats(prettyOutputStats) },
+        { name: 'prettyoutputV1', ...prettyStats(prettyOutputV1Stats) },
         { name: 'prettyjson', ...prettyStats(prettyJsonStats) },
         { name: 'util.inspect', ...prettyStats(utilInspectStats) },
         { name: '@poppinss/dumper', ...prettyStats(dumperStats) },
@@ -97,6 +107,18 @@ function makeBench(weights: Weights, levels: number, keysCount: number, loopCoun
 }
 
 const tests = [
+    {
+        loops: 100,
+        levels: 1,
+        keys: 20,
+        weights: { serializable: 0.9, array: 0.3, object: 0.5, multilineString: 0.3, error: 0.2 },
+    },
+    {
+        loops: 100,
+        levels: 2,
+        keys: 20,
+        weights: { serializable: 0.9, array: 0.3, object: 0.5, multilineString: 0.3, error: 0.2 },
+    },
     {
         loops: 100,
         levels: 3,
@@ -112,13 +134,13 @@ const tests = [
     {
         loops: 200,
         levels: 4,
-        keys: 40,
+        keys: 20,
         weights: { serializable: 0.9, array: 0.3, object: 0.5, multilineString: 0.3, error: 0.2 },
     },
     {
         loops: 100,
         levels: 5,
-        keys: 20,
+        keys: 10,
         weights: { serializable: 0.9, array: 0.3, object: 0.5, multilineString: 0.3, error: 0.2 },
     },
 ]
