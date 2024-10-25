@@ -17,7 +17,7 @@ interface BenchDesc {
     weights: string
 }
 
-function runFunction(loopCount: number, fn: () => void): number[] {
+async function runFunction(loopCount: number, fn: () => void): Promise<number[]> {
     const diffs: number[] = []
 
     for (let i = 0; i < loopCount; i++) {
@@ -31,31 +31,31 @@ function runFunction(loopCount: number, fn: () => void): number[] {
     return diffs
 }
 
-function runPrettyOutput(element: unknown, loopCount: number): number[] {
+async function runPrettyOutput(element: unknown, loopCount: number): Promise<number[]> {
     return runFunction(loopCount, () => {
         prettyOutput(element, { noColor: true, maxDepth: 100 })
     })
 }
 
-function runPrettyOutputV1(element: unknown, loopCount: number): number[] {
+async function runPrettyOutputV1(element: unknown, loopCount: number): Promise<number[]> {
     return runFunction(loopCount, () => {
         prettyOutputV1(element, { noColor: true, maxDepth: 100 })
     })
 }
 
-function runUtilInspect(element: unknown, loopCount: number): number[] {
+async function runUtilInspect(element: unknown, loopCount: number): Promise<number[]> {
     return runFunction(loopCount, () => {
         util.inspect(element, { depth: 100 })
     })
 }
 
-function runPrettyJson(element: unknown, loopCount: number): number[] {
+async function runPrettyJson(element: unknown, loopCount: number): Promise<number[]> {
     return runFunction(loopCount, () => {
         prettyjson.render(element, { noColor: true })
     })
 }
 
-function runDumper(element: unknown, loopCount: number): number[] {
+async function runDumper(element: unknown, loopCount: number): Promise<number[]> {
     return runFunction(loopCount, () => {
         dump(element, { depth: 100 })
     })
@@ -67,25 +67,29 @@ function prettyWeights(weights: Weights): string {
         .join('    ')
 }
 
-function makeBench(weights: Weights, levels: number, keysCount: number, loopCount: number): void {
-    console.log('\n')
-
+async function makeBenchResults(
+    weights: Weights,
+    levels: number,
+    keysCount: number,
+    loopCount: number
+): Promise<string> {
     const benchDesc: BenchDesc = {
         levels,
         keys: keysCount,
         loops: loopCount,
         weights: prettyWeights(weights),
     }
-    console.log(columnify([benchDesc], { columnSplitter: ' | ' }), '\n')
 
-    const element = makeElement(weights, levels, keysCount)
+    const element = await makeElement(weights, levels, keysCount)
 
-    const prettyOutputDiffs = runPrettyOutput(element, loopCount)
-    const prettyOutputV1Diffs = runPrettyOutputV1(element, loopCount)
-    const prettyJsonDiffs = runPrettyJson(element, loopCount)
-    const utilInspectDiffs = runUtilInspect(element, loopCount)
-    const dumperDiffs = runDumper(element, loopCount)
+    // Running the benchmarks
+    const prettyOutputDiffs = await runPrettyOutput(element, loopCount)
+    const prettyOutputV1Diffs = await runPrettyOutputV1(element, loopCount)
+    const prettyJsonDiffs = await runPrettyJson(element, loopCount)
+    const utilInspectDiffs = await runUtilInspect(element, loopCount)
+    const dumperDiffs = await runDumper(element, loopCount)
 
+    // Calculating the stats
     const prettyOutputStats = stats(prettyOutputDiffs)
     const prettyOutputV1Stats = stats(prettyOutputV1Diffs)
     const prettyJsonStats = stats(prettyJsonDiffs)
@@ -93,58 +97,74 @@ function makeBench(weights: Weights, levels: number, keysCount: number, loopCoun
     const dumperStats = stats(dumperDiffs)
 
     const result = [
-        { name: 'prettyoutput', ...prettyStats(prettyOutputStats) },
-        { name: 'prettyoutputV1', ...prettyStats(prettyOutputV1Stats) },
+        { name: 'prettyoutput2.x', ...prettyStats(prettyOutputStats) },
+        { name: 'prettyoutput1.x', ...prettyStats(prettyOutputV1Stats) },
         { name: 'prettyjson', ...prettyStats(prettyJsonStats) },
         { name: 'util.inspect', ...prettyStats(utilInspectStats) },
         { name: '@poppinss/dumper', ...prettyStats(dumperStats) },
     ]
+    const benchHeader = `\n${columnify([benchDesc], { columnSplitter: ' | ' })}\n\n`
+    const resultString = `${columnify(result, { columnSplitter: ' | ' })}\n`
+    const separator =
+        '--------------------------------------------------------------------------------------------------------------\n'
 
-    console.log(columnify(result, { columnSplitter: ' | ' }))
-    console.log(
-        '--------------------------------------------------------------------------------------------------------------'
-    )
+    // Returning the header, results, and separator
+    return benchHeader + resultString + separator
 }
 
-const tests = [
-    {
-        loops: 100,
-        levels: 1,
+async function main(): Promise<void> {
+    const testInput = {
         keys: 20,
-        weights: { serializable: 0.9, array: 0.3, object: 0.5, multilineString: 0.3, error: 0.2 },
-    },
-    {
         loops: 100,
-        levels: 2,
-        keys: 20,
-        weights: { serializable: 0.9, array: 0.3, object: 0.5, multilineString: 0.3, error: 0.2 },
-    },
-    {
-        loops: 100,
-        levels: 3,
-        keys: 20,
-        weights: { serializable: 0.9, array: 0.3, object: 0.5, multilineString: 0.3, error: 0.2 },
-    },
-    {
-        loops: 100,
-        levels: 4,
-        keys: 20,
-        weights: { serializable: 0.9, array: 0.3, object: 0.5, multilineString: 0.3, error: 0.2 },
-    },
-    {
-        loops: 200,
-        levels: 4,
-        keys: 20,
-        weights: { serializable: 0.9, array: 0.3, object: 0.5, multilineString: 0.3, error: 0.2 },
-    },
-    {
-        loops: 100,
-        levels: 5,
-        keys: 10,
-        weights: { serializable: 0.9, array: 0.3, object: 0.5, multilineString: 0.3, error: 0.2 },
-    },
-]
+        weights: {
+            serializable: 0.9,
+            array: 0.3,
+            object: 0.5,
+            multilineString: 0.3,
+            error: 0.2,
+        },
+    }
 
-for (const test of tests) {
-    makeBench(test.weights, test.levels, test.keys, test.loops)
+    const tests = [
+        {
+            ...testInput,
+            levels: 1,
+        },
+        {
+            ...testInput,
+            levels: 2,
+        },
+        {
+            ...testInput,
+            levels: 3,
+        },
+        {
+            ...testInput,
+            levels: 4,
+        },
+        {
+            ...testInput,
+            levels: 4,
+            loops: 200,
+        },
+        {
+            ...testInput,
+            levels: 5,
+            keys: 10,
+        },
+    ]
+
+    const allResults: string[] = []
+
+    for (const test of tests) {
+        console.log(
+            `Preparing mock data for levels: ${test.levels}, keys: ${test.keys}, loops: ${test.loops}`
+        )
+        const result = await makeBenchResults(test.weights, test.levels, test.keys, test.loops)
+        allResults.push(result)
+    }
+
+    console.log(allResults.join('\n'))
 }
+
+await main().catch(console.error)
