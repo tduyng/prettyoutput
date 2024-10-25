@@ -1,9 +1,9 @@
 import { prettyoutput } from '../src/index.js'
 
 const data = {
-    username: 'kic',
-    url: 'https://github.com/keepitcool',
-    projects: ['prettyoutput', '3m2tuio'],
+    username: 'ekino',
+    url: 'https://github.com/ekino',
+    projects: ['@ekino/prettyoutput', '@ekino/logger', '@ekino/veggies'],
     age: 18,
     details: {
         hobbies: ['coding', 'gaming', 'reading'],
@@ -27,15 +27,15 @@ const data = {
     },
     isActive: true,
     contact: {
-        email: 'kic@example.com',
+        email: 'ekino@example.com',
         phone: {
             home: '123-456-7890',
             work: '098-765-4321',
         },
     },
     socialMedia: {
-        twitter: '@kic',
-        linkedIn: 'linkedin.com/in/kic',
+        twitter: '@ekino_France',
+        linkedIn: 'linkedin.com/company/ekino',
     },
 }
 
