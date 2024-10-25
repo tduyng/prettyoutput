@@ -1,53 +1,77 @@
-Good pull requests - patches, improvements, new features - are a fantastic
-help.
+# Contributing to @ekino/prettyoutput 🌟
 
-If you've spotted any small, obvious errors and want to help out by patching it,
-that will be much appreciated.
+First and foremost, thank you for considering a contribution to this project! 💖 
 
-If your contribution involves a significant amount of work or substantial
-changes to any part of the project, please open a "contribution enquiry" issue
-first to check that the work is wanted or matches the goals of the project.
+Your time and effort make a difference, and every pull request, no matter the size, helps move this project forward.
 
-All pull requests should remain focused in scope and avoid containing unrelated
-commits.
+Whether you're fixing a bug, adding a new feature, or improving documentation, your input is valuable. If you're new to open source, welcome! 🎉 
 
-Please follow this process; it's the best way to get your work included in the
-project:
+Don't worry if you feel unsure about where to start—every bit of help is appreciated, and questions are welcome.
 
-1. [Fork](http://help.github.com/fork-a-repo/) the project.
+## How to Contribute
 
-2. Clone your fork (`git clone
-   git@github.com:<your-username>/<repo-name>.git`).
+Follow this guide to ensure a smooth contribution process. If you're planning significant work or substantial changes, please create an issue labeled "contribution enquiry" to discuss your proposal. This will help ensure that your work aligns with the project's goals.
 
-3. Add an `upstream` remote (`git remote add upstream
-   git://github.com/<upsteam-owner>/<repo-name>.git`).
+### Steps to Get Started
 
-4. Get the latest changes from upstream (e.g. `git pull upstream
-   <dev-branch>`).
+1. **Fork the Repository**  
+   Start by [forking the repository](http://help.github.com/fork-a-repo/).
 
-5. Create a new topic branch to contain your feature, change, or fix (`git
-   checkout -b <topic-branch-name>`).
+2. **Clone Your Fork**  
+   Clone your forked repo to your local machine:
+   ```bash
+   git clone git@github.com:ekino/pretty-output.git
+   ```
 
-6. Create the needed tests to ensure that your contribution is not broken in the future.
-   If you are creating a small fix or patch to an existing feature, just a simple test
-   will do, if it is a brand new feature, make sure to create a new test suite.
+3. **Set Upstream**  
+   Link back to the main project repository:
+   ```bash
+   git remote add upstream git://github.com/ekino/pretty-output.git
+   ```
 
-7. Make sure that your changes adhere to the current coding conventions used
-   throughout the project - indentation, accurate comments, etc.
+4. **Sync With Upstream**  
+   Fetch the latest changes from upstream, usually the main development branch:
+   ```bash
+   git pull upstream <dev-branch>
+   ```
 
-8. Commit your changes in logical chunks; use git's [interactive
-   rebase](https://help.github.com/articles/interactive-rebase) feature to tidy
-   up your commits before making them public. Please adhere to these [git commit
-   message guidelines](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
-   or your pull request is unlikely be merged into the main project.
+5. **Create a Topic Branch**  
+   Create a new branch for your feature, fix, or enhancement:
+   ```bash
+   git checkout -b <topic-branch-name>
+   ```
 
-9. Locally merge (or rebase) the upstream branch into your topic branch.
+6. **Write Tests**  
+   Ensure your changes are reliable by including tests. For small patches, a simple test is fine; for new features, create a dedicated test suite.
 
-10. Push your topic branch up to your fork (`git push origin
-   <topic-branch-name>`).
+7. **Coding Style and Conventions**  
+   Maintain the project’s coding standards. Consistent indentation, comments, and style improve readability.
 
-11. [Open a Pull Request](http://help.github.com/send-pull-requests/) with a
-    clear title and description.
+8. **Commit Changes in Logical Chunks**  
+   Split your commits into logical parts. Use git’s [interactive rebase](https://help.github.com/articles/interactive-rebase) to keep your commit history clean.
 
-If you have any other questions about contributing, please feel free to contact
-me.
+9. **Merge With Upstream**  
+   Sync your branch with the latest upstream changes:
+   ```bash
+   git pull --rebase upstream <dev-branch>
+   ```
+
+10. **Push to Your Fork**  
+    Push your topic branch to your fork:
+    ```bash
+    git push origin <topic-branch-name>
+    ```
+
+11. **Create a Pull Request**  
+    Open a [Pull Request](http://help.github.com/send-pull-requests/) with a clear title and description, explaining why and how you made your changes.
+
+### Guidelines for a Successful Contribution
+
+- **Focused Scope**: Keep your PR focused; avoid unrelated changes.
+- **Commit Messages**: Write meaningful commit messages. See [this guide](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html) for best practices.
+- **Style Consistency**: Follow the project’s formatting and coding style.
+- **Documentation**: Update documentation or comments as needed to explain your changes.
+
+### Need Help?
+
+If anything is unclear, or if you're facing any issues while contributing, please don’t hesitate to [open an issue](https://github.com/ekino/pretty-output/issues/new/choose). We're here to help!
