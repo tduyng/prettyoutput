@@ -1,16 +1,15 @@
 type Weights = Record<string, number>
 
-const makeArray = (): unknown[] => []
-const makeObject = (): Record<string, unknown> => ({})
-const makeMultilineString = (): string => 'A multi \nline \nstring'
-const makeSerializable = (): unknown => {
+const makeArray = async (): Promise<unknown[]> => []
+const makeObject = async (): Promise<Record<string, unknown>> => ({})
+const makeMultilineString = async (): Promise<string> => 'A multi \nline \nstring'
+const makeSerializable = async (): Promise<unknown> => {
     const set = [true, false, 1, 2.3, null, new Date(), 'A single line string', []]
-    const idx = Math.floor(Math.random() * set.length)
-    return set[idx]
+    return set[Math.floor(Math.random() * set.length)]
 }
-const makeError = (): Error => new Error('An error')
+const makeError = async (): Promise<Error> => new Error('An error')
 
-const weightedRand = (weights: Weights): string | null => {
+const weightedRand = (weights: Weights): string | undefined => {
     const entries = Object.entries(weights)
     const weightSum = entries.reduce((sum, [, weight]) => sum + weight, 0)
     const randomPointer = Math.random() * weightSum
@@ -22,99 +21,102 @@ const weightedRand = (weights: Weights): string | null => {
             return key
         }
     }
-    return null
+    return undefined
 }
 
-const weightedRands = (weights: Weights, count: number): (string | null)[] => {
-    return Array.from({ length: count }, () => weightedRand(weights))
-}
-
-const makeLevelArray = (weights: Weights, keysCount: number): unknown[] => {
-    return weightedRands(weights, keysCount).map((type) => {
-        switch (type) {
-            case 'array':
-                return makeArray()
-            case 'object':
-                return makeObject()
-            case 'multilineString':
-                return makeMultilineString()
-            case 'serializable':
-                return makeSerializable()
-            case 'error':
-                return makeError()
-            default:
-                return null
-        }
-    })
-}
-
-const makeLevelObject = (weights: Weights, keysCount: number): Record<string, unknown> => {
-    return weightedRands(weights, keysCount).reduce(
-        (acc, type, index) => {
-            const key = `key${index}`
+const makeLevelArray = async (weights: Weights, keysCount: number): Promise<unknown[]> => {
+    const types = Array.from({ length: keysCount }, () => weightedRand(weights))
+    return Promise.all(
+        types.map(async (type) => {
             switch (type) {
                 case 'array':
-                    acc[key] = makeArray()
-                    break
+                    return makeArray()
                 case 'object':
-                    acc[key] = makeObject()
-                    break
+                    return makeObject()
                 case 'multilineString':
-                    acc[key] = makeMultilineString()
-                    break
+                    return makeMultilineString()
                 case 'serializable':
-                    acc[key] = makeSerializable()
-                    break
+                    return makeSerializable()
                 case 'error':
-                    acc[key] = makeError()
-                    break
+                    return makeError()
                 default:
-                    acc[key] = null
+                    return undefined
             }
-            return acc
-        },
-        {} as Record<string, unknown>
+        })
     )
 }
 
-const makeLevelElements = (
+const makeLevelObject = async (
+    weights: Weights,
+    keysCount: number
+): Promise<Record<string, unknown>> => {
+    const types = Array.from(
+        { length: keysCount },
+        (_, idx) => [`key${idx}`, weightedRand(weights)] as const
+    )
+    const entries = await Promise.all(
+        types.map(async ([key, type]) => {
+            switch (type) {
+                case 'array':
+                    return [key, await makeArray()]
+                case 'object':
+                    return [key, await makeObject()]
+                case 'multilineString':
+                    return [key, await makeMultilineString()]
+                case 'serializable':
+                    return [key, await makeSerializable()]
+                case 'error':
+                    return [key, await makeError()]
+                default:
+                    return [key, null]
+            }
+        })
+    )
+    return Object.fromEntries(entries)
+}
+
+const makeLevelElements = async (
     weights: Weights,
     keysCount: number,
     levelElements: unknown[]
-): unknown[] => {
+): Promise<unknown[]> => {
     const nextLevel: unknown[] = []
 
-    while (levelElements.length > 0) {
-        const currentElement = levelElements.pop()
-
-        if (Array.isArray(currentElement)) {
-            const elementContent = makeLevelArray(weights, keysCount)
-            currentElement.push(...elementContent)
-            nextLevel.push(...elementContent)
-        } else if (typeof currentElement === 'object' && currentElement !== null) {
-            const elementContent = makeLevelObject(weights, keysCount)
-            Object.assign(currentElement, elementContent)
-            nextLevel.push(...Object.values(elementContent))
-        }
-    }
+    await Promise.all(
+        levelElements.map(async (element) => {
+            if (Array.isArray(element)) {
+                const arrayContent = await makeLevelArray(weights, keysCount)
+                element.push(...arrayContent)
+                nextLevel.push(...arrayContent)
+            } else if (typeof element === 'object' && element !== null) {
+                const objContent = await makeLevelObject(weights, keysCount)
+                Object.assign(element, objContent)
+                nextLevel.push(...Object.values(objContent))
+            }
+        })
+    )
 
     return nextLevel
 }
 
-export const makeElement = (weights: Weights, levels: number, keysCount: number): unknown => {
+export const makeElement = async (
+    weights: Weights,
+    levels: number,
+    keysCount: number
+): Promise<unknown> => {
     const topType = weightedRand({ array: 0.5, object: 0.5 })
-    const top = topType === 'array' ? makeArray() : makeObject()
+    const top = topType === 'array' ? await makeArray() : await makeObject()
 
     let levelElements: unknown[] = [top]
 
     for (let level = 0; level < levels; level++) {
-        levelElements = makeLevelElements(weights, keysCount, levelElements)
+        levelElements = await makeLevelElements(weights, keysCount, levelElements)
     }
 
     return top
 }
 
-/*const weights = {serializable: 0.9, array: 0.3, object: 0.4, multilineString: 0.3, error: 0.2}
-const levels = 4
-const keysCount = 5
-console.log(JSON.stringify(exports.makeElement(weights, levels, keysCount)))*/
+// const weights = { serializable: 0.9, array: 0.3, object: 0.4, multilineString: 0.3, error: 0.2 }
+// const levels = 4
+// const keysCount = 5
+// console.log(JSON.stringify(await makeElement(weights, levels, keysCount)))

@@ -1,32 +1,5 @@
 export const fixedInt = (v: number): number => Math.floor(v)
 
-/**
- *
- * @param {number} time - in nano seconds
- */
-export const prettyTime = (time: number): string => {
-    const mn = fixedInt(time / 1e12)
-    const s = fixedInt(time / 1e9) - fixedInt(mn * 1e3)
-    const ms = fixedInt(time / 1e6) - fixedInt(mn * 1e6) - fixedInt(s * 1e3)
-    const micros =
-        fixedInt(time / 1e3) - fixedInt(mn * 1e9) - fixedInt(s * 1e6) - fixedInt(ms * 1e3)
-    const ns =
-        fixedInt(time) -
-        fixedInt(mn * 1e12) -
-        fixedInt(s * 1e9) -
-        fixedInt(ms * 1e6) -
-        fixedInt(micros * 1e3)
-
-    let result = ''
-    if (mn !== 0) result += ` ${mn} mn`
-    if (s !== 0) result += ` ${s} s`
-    if (ms !== 0) result += ` ${ms} ms`
-    if (micros !== 0) result += ` ${micros} µs`
-    if (ns !== 0) result += ` ${ns} ns`
-
-    return result
-}
-
 type Stats = {
     min: number
     max: number
@@ -41,26 +14,30 @@ type PrettyStats = {
     total: string
 }
 
+/**
+ * Converts time from nanoseconds to a human-readable format.
+ * @param {number} time - Time in nanoseconds.
+ */
+export const prettyTime = (time: number): string => {
+    const mn = fixedInt(time / 1e12)
+    const s = fixedInt(time / 1e9) - mn * 1e3
+    const ms = fixedInt(time / 1e6) - mn * 1e6 - s * 1e3
+    const micros = fixedInt(time / 1e3) - mn * 1e9 - s * 1e6 - ms * 1e3
+    const ns = fixedInt(time) - mn * 1e12 - s * 1e9 - ms * 1e6 - micros * 1e3
+
+    return `${mn ? `${mn}mn ` : ''}${s ? `${s}s ` : ''}${ms ? `${ms}ms ` : ''}${micros ? `${micros}µs ` : ''}${ns}ns`
+}
+
 export const stats = (diffs: number[]): Stats => {
-    let min = diffs[0] ?? 0
-    let max = diffs[0] ?? 0
-    let total = 0
-
-    for (const diff of diffs) {
-        min = Math.min(min, diff)
-        max = Math.max(max, diff)
-        total += diff
-    }
-
-    const mean = total / diffs.length
-    return { min, max, mean, total }
+    const total = diffs.reduce((acc, diff) => acc + diff, 0)
+    const min = Math.min(...diffs)
+    const max = Math.max(...diffs)
+    return { min, max, mean: total / diffs.length, total }
 }
 
-export const prettyStats = (stats: Stats): PrettyStats => {
-    return {
-        min: prettyTime(stats.min),
-        max: prettyTime(stats.max),
-        mean: prettyTime(stats.mean),
-        total: prettyTime(stats.total),
-    }
-}
+export const prettyStats = (stats: Stats): PrettyStats => ({
+    min: prettyTime(stats.min),
+    max: prettyTime(stats.max),
+    mean: prettyTime(stats.mean),
+    total: prettyTime(stats.total),
+})
