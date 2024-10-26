@@ -62,7 +62,9 @@
         "build": "tsx scripts/build.ts",
         "test": "mocha 'tests/**/*.[tj]s'",
         "coverage": "c8 -r=cobertura -r=lcov -r=text-summary npm run test",
-        "benchmark": "tsx ./benchmark/benchmark.js",
+        "benchmark": "tsx ./benchmark/benchmark.ts",
+        "benchmark-deno": "deno -A --unstable-sloppy-imports ./benchmark/benchmark.ts",
+        "benchmark-bun": "bun ./benchmark/benchmark.ts",
         "changelog": "conventional-changelog -p conventionalcommits -r -u 0",
         "examples": "tsx ./examples/example.ts",
         "postinstall": "git config core.hooksPath ./.githooks || true"
