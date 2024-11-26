@@ -65,7 +65,7 @@
         "benchmark": "tsx ./benchmark/benchmark.ts",
         "benchmark-deno": "deno -A --unstable-sloppy-imports ./benchmark/benchmark.ts",
         "benchmark-bun": "bun ./benchmark/benchmark.ts",
-        "changelog": "conventional-changelog -p conventionalcommits -r -u 0",
+        "changelog": "git cliff",
         "examples": "tsx ./examples/example.ts",
         "postinstall": "git config core.hooksPath ./.githooks || true"
     },
@@ -93,7 +93,6 @@
         "c8": "^10.1.2",
         "columnify": "^1.6.0",
         "commitlint": "^19.5.0",
-        "conventional-changelog-cli": "^5.0.0",
         "mocha": "^10.7.3",
         "prettyjson": "^1.2.5",
         "prettyoutput": "^1.2.0",
