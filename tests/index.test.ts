@@ -1,4 +1,5 @@
 import assert from 'node:assert'
+import { describe, it } from 'node:test'
 import { colors } from '../src/colors.js'
 import { prettyoutput } from '../src/index.js'
 import { indent } from '../src/utils.js'

@@ -1,7 +1,0 @@
-full-trace: true
-check-leaks: true
-color: true
-ui: bdd
-enable-source-maps: true
-require:
-  - tsx
