@@ -126,13 +126,8 @@ There are multiple aliases available for the CLI, allowing you to use the comman
 # Pretty print a JSON file
 pretty package.json             # for ESM
 prettyoutput package.json       # for ESM
-prettyOutput package.json       # for ESM
-pretty-esm package.json         # for ESM
-prettyoutput-esm package.json   # for ESM
-prettyOutput-esm package.json   # for ESM
 pretty-cjs package.json         # for CJS
 prettyoutput-cjs package.json   # for CJS
-prettyOutput-cjs package.json   # for CJS
 ```
 
 Example CLI Output:
@@ -160,8 +155,6 @@ cat package.json | prettyoutput --indent=4 --depth=5 --noColor
 # Pretty print a JSON file
 prettyoutput package.json       # for ESM
 pretty package.json             # for ESM
-prettyoutput-esm package.json   # for ESM
-pretty-esm package.json         # for ESM
 prettyoutput-cjs package.json   # for CJS
 pretty-cjs package.json         # for CJS
 ```
