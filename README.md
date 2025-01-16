@@ -1,11 +1,11 @@
-# @ekino/prettyoutput
+# @tduyng/prettyoutput
 
-**@ekino/prettyoutput** is a fast, customizable library for formatting JavaScript/JSON objects into a human-readable, YAML-style output. 
+**@tduyng/prettyoutput** is a fast, customizable library for formatting JavaScript/JSON objects into a human-readable, YAML-style output. 
 
-[![Version npm](https://img.shields.io/npm/v/@ekino/prettyoutput.svg?style=flat-square)](https://www.npmjs.com/package/@ekino/prettyoutput)
-[![npm Downloads](https://img.shields.io/npm/dm/@ekino/prettyoutput.svg?style=flat-square)](https://npmcharts.com/compare/@ekino/prettyoutput?minimal=true)
-[![build status](https://github.com/ekino/prettyoutput/actions/workflows/ci.yaml/badge.svg)](https://github.com/ekino/prettyoutput/actions/workflows/ci.yml)
-[![Coverage Status](https://coveralls.io/repos/github/ekino/prettyoutput/badge.svg?branch=master)](https://coveralls.io/github/ekino/prettyoutput?branch=master)
+[![Version npm](https://img.shields.io/npm/v/@tduyng/prettyoutput.svg?style=flat-square)](https://www.npmjs.com/package/@tduyng/prettyoutput)
+[![npm Downloads](https://img.shields.io/npm/dm/@tduyng/prettyoutput.svg?style=flat-square)](https://npmcharts.com/compare/@tduyng/prettyoutput?minimal=true)
+[![build status](https://github.com/tduyng/prettyoutput/actions/workflows/ci.yaml/badge.svg)](https://github.com/tduyng/prettyoutput/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/tduyng/prettyoutput/badge.svg?branch=master)](https://coveralls.io/github/tduyng/prettyoutput?branch=master)
 
 ## Features
 
@@ -21,22 +21,22 @@
 ## Installation
 
 ```bash
-npm  add @ekino/prettyoutput
-yarn add @ekino/prettyoutput
-pnpm add @ekino/prettyoutput
+npm  add @tduyng/prettyoutput
+yarn add @tduyng/prettyoutput
+pnpm add @tduyng/prettyoutput
 ```
 
 ## Usage
 
-**@ekino/prettyoutput** is extremely easy to use. Just require it in your project and call the function with your data:
+**@tduyng/prettyoutput** is extremely easy to use. Just require it in your project and call the function with your data:
 
 ```javascript
-import { prettyOutput } from '@ekino/prettyoutput'
+import { prettyOutput } from '@tduyng/prettyoutput'
 
 const data = {
-  username: 'ekino',
-  url: 'https://github.com/ekino',
-  projects: ['@ekino/prettyoutput', '@ekino/logger']
+  username: 'tduyng',
+  url: 'https://github.com/tduyng',
+  projects: ['@tduyng/prettyoutput', '@tduyng/logger']
 }
 
 console.log(prettyOutput(data))
@@ -45,11 +45,11 @@ console.log(prettyOutput(data))
 Sample output:
 
 ```bash
-username: ekino
-url: https://github.com/ekino
+username: tduyng
+url: https://github.com/tduyng
 projects:
-  - @ekino/prettyoutput
-  - @ekino/logger
+  - @tduyng/prettyoutput
+  - @tduyng/logger
 ```
 
 Other example:
@@ -90,12 +90,12 @@ Other example:
 
 Example using options :
 ```javascript
-import { prettyOutput } from '@ekino/prettyoutput'
+import { prettyOutput } from '@tduyng/prettyoutput'
 
 const data = {
-  username: 'ekino',
-  url: 'https://github.com/ekino',
-  projects: ['@ekino/prettyoutput', '@ekino/logger']
+  username: 'tduyng',
+  url: 'https://github.com/tduyng',
+  projects: ['@tduyng/prettyoutput', '@tduyng/logger']
 };
 
 const options = {
@@ -163,7 +163,7 @@ pretty package.json             # for ESM
 prettyoutput-esm package.json   # for ESM
 pretty-esm package.json         # for ESM
 prettyoutput-cjs package.json   # for CJS
-pretty package.json             # for CJS
+pretty-cjs package.json         # for CJS
 ```
 
 Example CLI Output:
@@ -265,4 +265,4 @@ If you'd like to contribute to this project, feel free to submit issues and pull
 
 ## Credits
 
-**@ekino/prettyoutput** is based on the original [prettyoutput](https://github.com/keepitcool/prettyoutput) project, which is now archived. Special thanks to [@bnadim](https://github.com/bnadim) for creating the original project, and to all contributors who helped enhance it over time.
+**@tduyng/prettyoutput** is based on the original [prettyoutput](https://github.com/keepitcool/prettyoutput) project, which is now archived. Special thanks to [@bnadim](https://github.com/bnadim) for creating the original project, and to all contributors who helped enhance it over time.
