@@ -193,7 +193,7 @@ Performance is key for logging, and prettyoutput is built to be fast. Compared t
 
 ### Run Benchmarks
 ```bash
-yarn benchmark
+pnpm run benchmark
 ```
 
 ### Benchmark Results
@@ -250,14 +250,14 @@ For detailed benchmark results, refer to the [benchmark documentation](./benchma
 Clone the repository and install development dependencies:
 
 ```bash
-yarn install
+pnpm run install
 ```
 
 Run tests:
 
 ```bash
-yarn test
-# or yarn coverage
+pnpm run test
+# or pnpm run coverage
 ```
 
 ## Contribution

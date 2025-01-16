@@ -3,7 +3,7 @@
     "name": "@tduyng/prettyoutput",
     "description": "Library to format JSON objects into a colorful, YAML-style output. Ideal for pretty printing logs with high performance.",
     "version": "1.2.0",
-    "homepage": "http://github.com/ekino/pretty-output",
+    "homepage": "http://github.com/tduyng/pretty-output",
     "keywords": [
         "json",
         "javascript",
@@ -23,7 +23,7 @@
     ],
     "maintainers": [
         {
-            "name": "Ekino"
+            "name": "tduyng"
         }
     ],
     "engines": {
@@ -31,10 +31,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "http://github.com/ekino/pretty-output.git"
+        "url": "http://github.com/tduyng/pretty-output.git"
     },
     "bugs": {
-        "url": "http://github.com/ekino/pretty-output/issues"
+        "url": "http://github.com/tduyng/pretty-output/issues"
     },
     "type": "module",
     "files": [
@@ -59,9 +59,12 @@
     "scripts": {
         "lint": "biome check --write",
         "check": "biome check",
-        "build": "tsx scripts/build.ts",
         "test": "mocha 'tests/**/*.[tj]s'",
         "coverage": "c8 -r=cobertura -r=lcov -r=text-summary npm run test",
+        "build": "pnpm run build:esm && pnpm run build:cjs",
+        "build:esm": "tsc -p tsconfig.lib.json --module NodeNext --outDir lib/esm",
+        "build:cjs": "tsc -p tsconfig.lib.json --module CommonJS --moduleResolution Node --outDir lib/cjs",
+        "postbuild:cjs": "echo '{\"type\": \"commonjs\"}' > lib/cjs/package.json",
         "benchmark": "tsx ./benchmark/benchmark.ts",
         "benchmark-deno": "deno -A --unstable-sloppy-imports ./benchmark/benchmark.ts",
         "benchmark-bun": "bun ./benchmark/benchmark.ts",
@@ -98,6 +101,5 @@
         "prettyoutput": "^1.2.0",
         "tsx": "^4.19.1",
         "typescript": "^5.6.3"
-    },
-    "packageManager": "yarn@4.5.1"
+    }
 }
