@@ -5,7 +5,7 @@
 [![Version npm](https://img.shields.io/npm/v/@tduyng/prettyoutput.svg?style=flat-square)](https://www.npmjs.com/package/@tduyng/prettyoutput)
 [![npm Downloads](https://img.shields.io/npm/dm/@tduyng/prettyoutput.svg?style=flat-square)](https://npmcharts.com/compare/@tduyng/prettyoutput?minimal=true)
 [![build status](https://github.com/tduyng/prettyoutput/actions/workflows/ci.yaml/badge.svg)](https://github.com/tduyng/prettyoutput/actions/workflows/ci.yml)
-[![Coverage Status](https://coveralls.io/repos/github/tduyng/prettyoutput/badge.svg?branch=master)](https://coveralls.io/github/tduyng/prettyoutput?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/tduyng/prettyoutput/badge.svg?branch=2.0)](https://coveralls.io/github/tduyng/prettyoutput?branch=2.0)
 
 ## Features
 
