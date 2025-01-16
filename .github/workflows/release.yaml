@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       strategy:
-        description: "Valid semver (x.x.x) or strategy (patch, minor, major)"
-        default: "patch"
+        description: 'Valid semver (x.x.x) or strategy (patch, minor, major)'
+        default: 'patch'
         required: false
 
 permissions:
@@ -22,23 +22,29 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 10
+          run_install: false
+
       - name: Setup Node.js 22.x
         uses: actions/setup-node@v4
         with:
           node-version: '22.x'
-          cache: 'yarn'
+          cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: pnpm install --frozen-lockfile
 
       - name: Build the project
-        run: yarn build
+        run: pnpm run build
 
       - name: Bump version
         id: versioning
         run: |
-          yarn version ${{ github.event.inputs.strategy }}
+          pnpm version ${{ github.event.inputs.strategy }}
           VERSION=$(node -p "require('./package.json').version")
           echo "current-version=$VERSION" >> $GITHUB_OUTPUT
 
