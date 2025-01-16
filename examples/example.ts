@@ -1,9 +1,9 @@
 import { prettyoutput } from '../src/index.js'
 
 const data = {
-    username: 'ekino',
-    url: 'https://github.com/ekino',
-    projects: ['@ekino/prettyoutput', '@ekino/logger', '@ekino/veggies'],
+    username: 'tduyng',
+    url: 'https://github.com/tduyng',
+    projects: ['@tduyng/prettyoutput', '@tduyng/logger'],
     age: 18,
     details: {
         hobbies: ['coding', 'gaming', 'reading'],
@@ -27,15 +27,15 @@ const data = {
     },
     isActive: true,
     contact: {
-        email: 'ekino@example.com',
+        email: 'tduyng@example.com',
         phone: {
             home: '123-456-7890',
             work: '098-765-4321',
         },
     },
     socialMedia: {
-        twitter: '@ekino_France',
-        linkedIn: 'linkedin.com/company/ekino',
+        twitter: '@tduyng',
+        linkedIn: 'linkedin.com/tduyng',
     },
 }
 
