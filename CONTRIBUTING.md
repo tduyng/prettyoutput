@@ -1,4 +1,4 @@
-# Contributing to @ekino/prettyoutput 🌟
+# Contributing to @tduyng/prettyoutput 🌟
 
 First and foremost, thank you for considering a contribution to this project! 💖 
 
@@ -20,13 +20,13 @@ Follow this guide to ensure a smooth contribution process. If you're planning si
 2. **Clone Your Fork**  
    Clone your forked repo to your local machine:
    ```bash
-   git clone git@github.com:ekino/pretty-output.git
+   git clone git@github.com:tduyng/prettyoutput.git
    ```
 
 3. **Set Upstream**  
    Link back to the main project repository:
    ```bash
-   git remote add upstream git://github.com/ekino/pretty-output.git
+   git remote add upstream git://github.com/tduyng/prettyoutput.git
    ```
 
 4. **Sync With Upstream**  
@@ -74,4 +74,4 @@ Follow this guide to ensure a smooth contribution process. If you're planning si
 
 ### Need Help?
 
-If anything is unclear, or if you're facing any issues while contributing, please don’t hesitate to [open an issue](https://github.com/ekino/pretty-output/issues/new/choose). We're here to help!
+If anything is unclear, or if you're facing any issues while contributing, please don’t hesitate to [open an issue](https://github.com/tduyng/prettyoutput/issues/new/choose). We're here to help!

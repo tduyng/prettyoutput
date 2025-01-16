@@ -11,11 +11,11 @@
 - **Dual build**: Both ESM and CommonJS modules are included, allowing backward compatibility.
   - **New import syntax**: 
     - ESM: 
-        - `import { prettyOutput } from 'pretty-output';`
-        - `import prettyOutput from 'pretty-output';`
+        - `import { prettyOutput } from 'prettyoutput';`
+        - `import prettyOutput from 'prettyoutput';`
     - CommonJS: 
-        - `const { prettyOutput } = require('pretty-output');`
-        - `const prettyOutput = require('pretty-output').default;`
+        - `const { prettyOutput } = require('prettyoutput');`
+        - `const prettyOutput = require('prettyoutput').default;`
 - **Dual bin support**: 
     - The CLI tool has been overhauled with dual binaries for **ESM and CJS** environments.
     - **Aliases**: The binary supports multiple aliases: `pretty`, `prettyoutput`, `prettyOutput`, etc., with suffixes for ESM (`-esm`) and CJS (`-cjs`).
