@@ -3,7 +3,7 @@ rules:
   type-enum:
     - 2 # Error level: 2 (must be followed)
     - always # Applies the rule always
-    - [ 'feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'build', 'ci', 'chore', 'revert' ] # Allowed types
+    - ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'build', 'ci', 'chore', 'revert'] # Allowed types
 
   # Rule to disallow empty commit subjects
   subject-empty:
