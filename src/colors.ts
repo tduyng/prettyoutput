@@ -1,6 +1,11 @@
-const formatter = (open: string, close: string) => (input: string) => open + input + close
+import type { Colors, Formatter } from './definitions.js'
 
-const createColors = () => ({
+const formatter =
+    (open: string, close: string): Formatter =>
+    (input: string): string =>
+        open + input + close
+
+const createColors = (): Colors => ({
     black: formatter('\x1b[30m', '\x1b[39m'),
     blue: formatter('\x1b[34m', '\x1b[39m'),
     brown: formatter('\x1b[38;5;94m', '\x1b[39m'),
@@ -19,4 +24,4 @@ const createColors = () => ({
     yellow: formatter('\x1b[33m', '\x1b[39m'),
 })
 
-export const colors = createColors()
+export const colors: Colors = createColors()

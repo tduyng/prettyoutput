@@ -60,7 +60,7 @@ export const alignString = (input: string, indentation: string): string =>
 export const colorString = (input: string, color?: Color): string =>
     color ? `${colors[color](input)}` : input
 
-export const repeat = (string: string, count: number) => string.repeat(Math.max(0, count))
+export const repeat = (string: string, count: number): string => string.repeat(Math.max(0, count))
 
 /**
  * Serializable values are boolean, number, null, Date, Single line strings, empty arrays
