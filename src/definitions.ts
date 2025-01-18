@@ -43,3 +43,9 @@ export type Stack = {
     input: unknown
     noRender?: boolean
 }
+
+export type Formatter = (input: string) => string
+
+export type Colors = {
+    [key in Color]: Formatter
+}
