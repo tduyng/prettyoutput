@@ -1,22 +1,22 @@
 # @tduyng/prettyoutput
 
-**@tduyng/prettyoutput** is a fast, customizable library for formatting JavaScript/JSON objects into a human-readable, YAML-style output. 
+**@tduyng/prettyoutput** is a fast, customizable library for formatting JavaScript/JSON objects into a human-readable, YAML-style output.
 
 [![Version npm](https://img.shields.io/npm/v/@tduyng/prettyoutput.svg?style=flat-square)](https://www.npmjs.com/package/@tduyng/prettyoutput)
 [![npm Downloads](https://img.shields.io/npm/dm/@tduyng/prettyoutput.svg?style=flat-square)](https://npmcharts.com/compare/@tduyng/prettyoutput?minimal=true)
 [![build status](https://github.com/tduyng/prettyoutput/actions/workflows/ci.yaml/badge.svg)](https://github.com/tduyng/prettyoutput/actions/workflows/ci.yml)
-[![Coverage Status](https://coveralls.io/repos/github/tduyng/prettyoutput/badge.svg?branch=2.0)](https://coveralls.io/github/tduyng/prettyoutput?branch=2.0)
+[![Coverage Status](https://coveralls.io/repos/github/tduyng/prettyoutput/badge.svg?branch=2.0)](https://coveralls.io/github/tduyng/prettyoutput?branch=master)
 
 ## Features
 
-- **High Performance**: Optimized to be 1.x-3.x times faster and more beautiful than `util.inspect`, making it ideal for real-time logging.
-- **Customizable**: Configure indentation, color schemes, depth limits, and more to fit your specific needs.
-- **Versatile**: Works as both a `Node.js`, `Deno`, `Bun` library and a CLI tool, giving flexibility for scripts and terminal usage.
-- **Color Output**: Easily distinguish keys, strings, numbers, and more with customizable color formatting.
-- **Dual Package**: Supports both ES modules and CommonJS, ensuring compatibility with various JavaScript environments.
-- **TypeScript Support**: Fully written in TypeScript, offering type safety and modern development practices.
-- **Simple and Tested**: Designed for ease of use with a thoroughly tested codebase.
-- **Zero Dependencies**: Uses only `commander.js` for the CLI.
+- 🚀 **Fast** – 2x-3x faster than `node:util.inspect`.
+- 🎨 **Customizable** – Adjust indentation, colors, depth, and more.
+- 🌍 **Cross-platform** – Works with Node.js, Deno, Bun, and as a CLI.
+- 🎭 **Colorful output** – Highlights keys, strings, and numbers.
+- 📦 **ESM & CJS** – Supports both module systems.
+- 🔒 **TypeScript** – Fully typed for safety and modern dev.
+- ✅ **Simple & tested** – Easy to use, with solid test coverage.
+- 🛠 **Minimal** – No dependencies, except `commander.js` for CLI.
 
 ## Installation
 
@@ -34,9 +34,9 @@ pnpm add @tduyng/prettyoutput
 import { prettyOutput } from '@tduyng/prettyoutput'
 
 const data = {
-  username: 'tduyng',
-  url: 'https://github.com/tduyng',
-  projects: ['@tduyng/prettyoutput', '@tduyng/logger']
+    username: 'tduyng',
+    url: 'https://github.com/tduyng',
+    projects: ['@tduyng/prettyoutput', '@tduyng/logger'],
 }
 
 console.log(prettyOutput(data))
@@ -59,55 +59,60 @@ Other example:
 ## API
 
 `prettyOutput(data, options, indent)`
+
 ### Parameters
+
 ```md
- * {*} data                     : The JavaScript or JSON object to format
- * {Object} [options]           : Optional. See options below
- * {number} [indent]            : Optional. Indent all output
+- {\*} data : The JavaScript or JSON object to format
+- {Object} [options] : Optional. See options below
+- {number} [indent] : Optional. Indent all output
 ```
 
 ### Options
+
 ```md
- * {number} [indentationLength] : Length of indentation (in terms of space)
- * {number} [maxDepth]          : maximum sublevel of nested objects/arrays output. Default: 3
- * {boolean}[noColor]           : disable colors. Default: false
- * {colors} [colors]            : Output colors. See below
- * {boolean}[alignKeyValues]    : Align key values. Default: true
- * {boolean}[hideUndefined]     : Do not display undefined values. Default: false
+- {number} [indentationLength] : Length of indentation (in terms of space)
+- {number} [maxDepth] : maximum sublevel of nested objects/arrays output. Default: 3
+- {boolean}[noColor] : disable colors. Default: false
+- {colors} [colors] : Output colors. See below
+- {boolean}[alignKeyValues] : Align key values. Default: true
+- {boolean}[hideUndefined] : Do not display undefined values. Default: false
 ```
 
 ### Colors Options
+
 ```md
- * {string} [keys]              : Objects keys color. Default: green
- * {string} [dash]              : Array prefixing dash ("- "). Default: green
- * {string} [number]            : Numbers color. Default: blue
- * {string} [string]            : Strings color. Default: no color
- * {string} [true]              : Boolean value 'true' color. Default: green
- * {string} [false]             : Boolean value 'false' color. Default: red
- * {string} [null]              : 'Null' color. Default: grey
- * {string} [undefined]         : 'Undefined' color. Default: grey
+- {string} [keys] : Objects keys color. Default: green
+- {string} [dash] : Array prefixing dash ("- "). Default: green
+- {string} [number] : Numbers color. Default: blue
+- {string} [string] : Strings color. Default: no color
+- {string} [true] : Boolean value 'true' color. Default: green
+- {string} [false] : Boolean value 'false' color. Default: red
+- {string} [null] : 'Null' color. Default: grey
+- {string} [undefined] : 'Undefined' color. Default: grey
 ```
 
 Example using options :
+
 ```javascript
 import { prettyOutput } from '@tduyng/prettyoutput'
 
 const data = {
-  username: 'tduyng',
-  url: 'https://github.com/tduyng',
-  projects: ['@tduyng/prettyoutput', '@tduyng/logger']
-};
+    username: 'tduyng',
+    url: 'https://github.com/tduyng',
+    projects: ['@tduyng/prettyoutput', '@tduyng/logger'],
+}
 
 const options = {
-  noColor: true,
-  maxDepth: 5,
-  colors: {
-    keys: 'blue',
-    null: 'red'
-  }
-};
+    noColor: true,
+    maxDepth: 5,
+    colors: {
+        keys: 'blue',
+        null: 'red',
+    },
+}
 
-console.log(prettyOutput(data, options, 2));
+console.log(prettyOutput(data, options, 2))
 ```
 
 ## CLI Usage
@@ -151,6 +156,7 @@ or
 # Indent 4, max depth 5, disable colors
 cat package.json | prettyoutput --indent=4 --depth=5 --noColor
 ```
+
 ```bash
 # Pretty print a JSON file
 prettyoutput package.json       # for ESM
@@ -182,14 +188,17 @@ cat package.json | prettyoutput --indent=4 --depth=5 --noColor
 ```
 
 ## Benchmark
+
 Performance is key for logging, and prettyoutput is built to be fast. Compared to alternatives like `util.inspect` and `prettyjson`, it consistently performs 1.x-3.x times faster.
 
 ### Run Benchmarks
+
 ```bash
 pnpm run benchmark
 ```
 
 ### Benchmark Results
+
 Tested on Node.js 22.8.0
 
 ```bash
@@ -236,6 +245,7 @@ util.inspect     | 828 ms 156 µs 412 ns | 1 s 884 ms 775 µs 777 ns | 920 ms 23
 @poppinss/dumper | 889 ms 54 µs 772 ns  | 1 s 323 ms 199 µs 230 ns | 1 s 14 ms 384 µs 206 ns | 101 s 438 ms 420 µs 665 ns
 --------------------------------------------------------------------------------------------------------------
 ```
+
 For detailed benchmark results, refer to the [benchmark documentation](./benchmark/README.md).
 
 ## Testing
@@ -243,7 +253,7 @@ For detailed benchmark results, refer to the [benchmark documentation](./benchma
 Clone the repository and install development dependencies:
 
 ```bash
-pnpm run install
+pnpm install
 ```
 
 Run tests:
@@ -254,6 +264,7 @@ pnpm run test
 ```
 
 ## Contribution
+
 If you'd like to contribute to this project, feel free to submit issues and pull requests. Contributions are always welcome!
 
 ## Credits
