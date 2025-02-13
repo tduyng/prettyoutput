@@ -1,0 +1,78 @@
+name: Dependency Updates
+on:
+  schedule:
+    - cron: '0 0 1,15 * *' # Runs on the 1st and 15th
+jobs:
+  update-deps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 10
+          run_install: false
+
+      - name: Set up Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Update dependencies
+        run: pnpm update --latest
+
+      - name: Check linter
+        run: pnpm run check
+
+      - name: Build the project
+        run: pnpm run build
+
+      - name: Run tests with coverage
+        run: pnpm run coverage
+        env:
+          CI: true
+      - name: Commit dependency updates if any
+        if: ${{ success() }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git switch -c update-deps
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "chore(deps): update latest dependencies"
+            git push --set-upstream origin update-deps --force
+          else
+            echo "No dependency updates found. Exiting."
+            exit 0
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Pull Request
+        if: ${{ success() }}
+        id: create_pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: update-deps
+          title: 'chore(deps): update latest dependencies'
+          body: 'Automated dependency update via pnpm update --latest'
+          labels: dependencies
+          commit-message: 'chore(deps): update latest dependencies'
+
+      # - name: Enable Pull Request automerge
+      #   run: gh pr merge --merge --auto "1"
+      #   env:
+      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #
+      # - name: Delete update branch after merge
+      #   if: ${{ success() }}
+      #   run: |
+      #     git push origin --delete update-deps || echo "Branch already deleted"
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
