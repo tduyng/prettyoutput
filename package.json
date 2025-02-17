@@ -70,7 +70,8 @@
         "benchmark-bun": "bun ./benchmark/benchmark.ts",
         "changelog": "git cliff",
         "examples": "tsx ./examples/example.ts",
-        "postinstall": "git config core.hooksPath ./.githooks || true"
+        "postinstall": "git config core.hooksPath ./.githooks || true",
+        "check-typing": "tsc -p tsconfig.json --noEmit"
     },
     "bin": {
         "pretty": "./bin/pretty_output.js",

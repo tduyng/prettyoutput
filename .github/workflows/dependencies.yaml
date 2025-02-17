@@ -1,7 +1,7 @@
 name: Dependency Updates
 on:
   schedule:
-    - cron: '0 0 1,15 * *' # Runs on the 1st and 15th
+    - cron: '0 0 1,5,10,15,20,25 * *' # Runs on the 1st and 15th
 jobs:
   update-deps:
     runs-on: ubuntu-latest
@@ -29,13 +29,14 @@ jobs:
       - name: Check linter
         run: pnpm run check
 
-      - name: Build the project
-        run: pnpm run build
+      - name: Check typing
+        run: pnpm run check-typing
 
       - name: Run tests with coverage
         run: pnpm run coverage
         env:
           CI: true
+
       - name: Commit dependency updates if any
         if: ${{ success() }}
         run: |

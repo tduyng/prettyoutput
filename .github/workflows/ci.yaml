@@ -32,6 +32,9 @@ jobs:
       - name: Check linter
         run: pnpm run check
 
+      - name: Check typing
+        run: pnpm run check-typing
+
       - name: Run tests with coverage
         run: pnpm run coverage
         env:
