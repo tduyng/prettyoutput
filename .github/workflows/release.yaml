@@ -50,6 +50,8 @@ jobs:
         id: versioning
         run: |
           npm version ${{ github.event.inputs.strategy }} -m "chore(release): v%s"
+          VERSION=$(node -p "require('./package.json').version")
+          echo "current-version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Set up git-cliff
         uses: kenji-miyake/setup-git-cliff@v2
