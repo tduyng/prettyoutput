@@ -80,7 +80,7 @@
         "prettyoutput-cjs": "./bin/pretty_output.cjs"
     },
     "dependencies": {
-        "commander": "13.1.0"
+        "commander": "13.x"
     },
     "devDependencies": {
         "@biomejs/biome": "1.9.4",
