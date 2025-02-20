@@ -45,7 +45,7 @@ jobs:
       - name: Update dependencies
         id: update_deps
         run: |
-          pnpm update --latest --save-exact
+          pnpm update --dev --latest --save-exact
           if git diff --quiet; then
             echo "No updates found"
             echo "UPDATE_FOUND=false" >> $GITHUB_ENV

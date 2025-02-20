@@ -93,7 +93,7 @@
         "commitlint": "19.7.1",
         "prettyjson": "1.2.5",
         "prettyoutput": "1.2.0",
-        "tsx": "4.19.2",
+        "tsx": "4.19.3",
         "typescript": "5.7.3"
     }
 }
