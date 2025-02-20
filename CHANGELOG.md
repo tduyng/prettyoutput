@@ -1,5 +1,21 @@
 # What's changed
 
+## [2.0.1](https://github.com/tduyng/prettyoutput/compare/v..v2.0.1) - 2025-02-20
+
+### ⚙️ Miscellaneous Tasks
+
+- *(ci)* Fix missing version for changelog - ([3650dfe](https://github.com/tduyng/prettyoutput/commit/3650dfe1ac2a11c00e7d956cd45900055dadb4f8))
+- *(release)* V2.0.1 - ([89a5bb2](https://github.com/tduyng/prettyoutput/commit/89a5bb263ef782ea2af059a51476322e26e0b166))
+- Keep merge PR manually for update dependencies - ([4e4fd2e](https://github.com/tduyng/prettyoutput/commit/4e4fd2eab840c118194de380ee7aa2964bd218a9))
+- Run steps only when updated dependencies found - ([375f0a7](https://github.com/tduyng/prettyoutput/commit/375f0a74a2a7be50f731a1ac556b1a9d06d00f5b))
+- Add check typing command - ([d1f816c](https://github.com/tduyng/prettyoutput/commit/d1f816c3d4f1f14a81fcf962f83995d3332ece4f))
+
+## New Contributors ❤️
+
+* @tduyng made their first contribution
+
+# What's changed
+
 ## [2.0.0](https://github.com/tduyng/prettyoutput/compare/v2.0.0-alpha15..v2.0.0) - 2025-02-17
 
 ### 🚀 Features
