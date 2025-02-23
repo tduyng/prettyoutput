@@ -1,7 +1,7 @@
 name: Bug Report
 description: Report an issue with prettyoutput
-title: "[Bug]: "
-labels: ["bug", "needs-triage"]
+title: '[Bug]: '
+labels: ['bug', 'needs-triage']
 body:
   - type: markdown
     attributes:
@@ -28,10 +28,10 @@ body:
     validations:
       required: true
     attributes:
-      label: Version of @ekino/prettyoutput
+      label: Version of @tduyng/prettyoutput
       placeholder: e.g., v2.0.0
       description: |
-        You can find this by running `npm list @ekino/prettyoutput` or similar.
+        You can find this by running `npm list @tduyng/prettyoutput` or similar.
 
   - type: input
     validations:

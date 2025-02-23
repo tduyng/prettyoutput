@@ -1,12 +1,12 @@
 name: Feature Request
-description: Suggest a new feature to enhance pretty-output
-title: "[Feature Request]: "
-labels: ["enhancement", "feature-request"]
+description: Suggest a new feature to enhance @tduyng/prettyoutput
+title: '[Feature Request]: '
+labels: ['enhancement', 'feature-request']
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for wanting to make `@ekino/prettyoutput` better! 🎉 Please use this form to share a feature you'd love to see.
+        Thanks for wanting to make `@tduyng/prettyoutput` better! 🎉 Please use this form to share a feature you'd love to see.
 
   - type: input
     validations:
@@ -15,7 +15,7 @@ body:
       label: 🔎 Search Terms
       description: |
         To help us understand if this request already exists, list any terms you searched for in open/closed issues.
-  
+
   - type: textarea
     validations:
       required: true
