@@ -27,7 +27,7 @@ const renderInput = (data) => {
     let input = data
     try {
         input = JSON.parse(data)
-    } catch (e) {
+    } catch {
         if (program.debug) console.error(`${colors.red('Error:')} unparsable content`)
     }
 
@@ -39,7 +39,7 @@ if (program.args.length) {
     const filename = program.args[0]
     try {
         renderInput(fs.readFileSync(filename, 'utf8'))
-    } catch (e) {
+    } catch {
         console.error(`${colors.red('Error:')} File ${filename} does not exist"`)
         process.exit(1)
     }
