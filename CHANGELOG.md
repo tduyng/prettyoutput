@@ -1,5 +1,25 @@
 # What's changed
 
+## [2.0.2](https://github.com/tduyng/prettyoutput/compare/v2.0.1..v2.0.2) - 2025-07-29
+
+### 🚀 Features
+
+- *(engine)* Still support node 18 lts - ([2501196](https://github.com/tduyng/prettyoutput/commit/2501196425c3359c2cb7f9179552b00c2f9dd2a2))
+
+### 🐛 Bug Fixes
+
+- *(ci)* Remove manual update dependencies system - ([970f091](https://github.com/tduyng/prettyoutput/commit/970f09180cb95bff95b37e6f95acce54829f8875))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(changelog)* Remove new contributor part in changelog - ([02d7b8f](https://github.com/tduyng/prettyoutput/commit/02d7b8fe5ea5a34941a655da629454cb337c6227))
+- *(release)* V2.0.2 - ([bc03c4d](https://github.com/tduyng/prettyoutput/commit/bc03c4d64bfdfcbc156b88237bcaa246d5be3b18))
+- *(tsconfig)* Remove declaration from root tsconfig - ([13e03bb](https://github.com/tduyng/prettyoutput/commit/13e03bbe8a001a08d16bb0d4ccda2f6daf0353e8))
+- Add force push options - ([37a2714](https://github.com/tduyng/prettyoutput/commit/37a2714c9750293016842426ff0f03e3611ae367))
+- Update issues templates - ([38329b9](https://github.com/tduyng/prettyoutput/commit/38329b94d12679247c62e250a7ef03772393e510))
+
+# What's changed
+
 ## [2.0.1](https://github.com/tduyng/prettyoutput/compare/v..v2.0.1) - 2025-02-20
 
 ### ⚙️ Miscellaneous Tasks
