@@ -9,14 +9,19 @@
 
 ## Features
 
-- 🚀 **Fast** – 2x-3x faster than `node:util.inspect`.
-- 🎨 **Customizable** – Adjust indentation, colors, depth, and more.
-- 🌍 **Cross-platform** – Works with Node.js, Deno, Bun, and as a CLI.
-- 🎭 **Colorful output** – Highlights keys, strings, and numbers.
-- 📦 **ESM & CJS** – Supports both module systems.
-- 🔒 **TypeScript** – Fully typed for safety and modern dev.
-- ✅ **Simple & tested** – Easy to use, with solid test coverage.
-- 🛠 **Minimal** – No dependencies, except `commander.js` for CLI.
+* Fast — 2–3x faster than `util.inspect`
+* Configurable — colors, depth, indentation, etc.
+* Cross-platform — Node.js, Deno, Bun, and CLI
+* ESM and CommonJS support
+* TypeScript-first, with full type safety
+* Minimal dependencies (only `commander` for CLI)
+* Tested with high coverage
+
+
+---
+
+Let me know if you want a shorter or more opinionated tone (e.g., for dev-focused landing pages).
+
 
 ## Installation
 
