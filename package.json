@@ -79,9 +79,6 @@
         "prettyoutput": "./bin/pretty_output.js",
         "prettyoutput-cjs": "./bin/pretty_output.cjs"
     },
-    "dependencies": {
-        "commander": "~14.0.1"
-    },
     "devDependencies": {
         "@biomejs/biome": "2.2.4",
         "@poppinss/dumper": "0.6.4",

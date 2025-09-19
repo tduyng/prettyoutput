@@ -9,19 +9,17 @@
 
 ## Features
 
-* Fast — 2–3x faster than `util.inspect`
-* Configurable — colors, depth, indentation, etc.
-* Cross-platform — Node.js, Deno, Bun, and CLI
-* ESM and CommonJS support
-* TypeScript-first, with full type safety
-* Minimal dependencies (only `commander` for CLI)
-* Tested with high coverage
-
+- Fast — 2–3x faster than `util.inspect`
+- Configurable — colors, depth, indentation, etc.
+- Cross-platform — Node.js, Deno, Bun, and CLI
+- ESM and CommonJS support
+- TypeScript-first, with full type safety
+- Zero dependencies
+- Tested with high coverage
 
 ---
 
 Let me know if you want a shorter or more opinionated tone (e.g., for dev-focused landing pages).
-
 
 ## Installation
 

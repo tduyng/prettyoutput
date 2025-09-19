@@ -1,24 +1,76 @@
 #!/usr/bin/env node
 const fs = require('node:fs')
-const { Command } = require('commander')
 const { prettyoutput } = require('../lib/cjs/index.js')
 const { colors } = require('../lib/cjs/colors.js')
 
-const program = new Command()
+const { version } = require('../package.json')
 
-program
-    .usage('[options] <file ...>')
-    .version(require('../package.json').version)
-    .option('-i, --indent <indent>', 'Space per indent', Number.parseInt)
-    .option('-n, --noColor', 'Disable color')
-    .option('-d, --depth <depth>', 'Max depth inspection', Number.parseInt)
-    .option('--debug', 'debug mode')
-    .parse(process.argv)
-
+const args = process.argv.slice(2)
 const options = {
-    indentationLength: program.indent,
-    noColor: program.noColor,
-    maxDepth: program.depth,
+    indentationLength: undefined,
+    noColor: false,
+    maxDepth: undefined,
+}
+let debug = false
+const files = []
+
+const showHelp = () => {
+    console.log(`Usage: pretty_output [options] <file ...>
+
+Options:
+  -i, --indent <indent>    Space per indent
+  -n, --noColor           Disable color
+  -d, --depth <depth>     Max depth inspection
+      --debug             debug mode
+  -V, --version           output the version number
+  -h, --help              display help for command`)
+    process.exit(0)
+}
+
+const showVersion = () => {
+    console.log(version)
+    process.exit(0)
+}
+
+for (let i = 0; i < args.length; i++) {
+    const arg = args[i]
+
+    if (arg === '-h' || arg === '--help') {
+        showHelp()
+    } else if (arg === '-V' || arg === '--version') {
+        showVersion()
+    } else if (arg === '-i' || arg === '--indent') {
+        const nextArg = args[++i]
+        if (nextArg === undefined) {
+            console.error('Error: option requires argument -- indent')
+            process.exit(1)
+        }
+        options.indentationLength = Number.parseInt(nextArg, 10)
+        if (Number.isNaN(options.indentationLength)) {
+            console.error('Error: indent must be a number')
+            process.exit(1)
+        }
+    } else if (arg === '-n' || arg === '--noColor') {
+        options.noColor = true
+    } else if (arg === '-d' || arg === '--depth') {
+        const nextArg = args[++i]
+        if (nextArg === undefined) {
+            console.error('Error: option requires argument -- depth')
+            process.exit(1)
+        }
+        options.maxDepth = Number.parseInt(nextArg, 10)
+        if (Number.isNaN(options.maxDepth)) {
+            console.error('Error: depth must be a number')
+            process.exit(1)
+        }
+    } else if (arg === '--debug') {
+        debug = true
+    } else if (arg.startsWith('-')) {
+        console.error(`Error: unknown option '${arg}'`)
+        process.exit(1)
+    } else {
+        files.push(arg)
+    }
 }
 
 const renderInput = (data) => {
@@ -26,15 +78,14 @@ const renderInput = (data) => {
     try {
         input = JSON.parse(data)
     } catch {
-        if (program.debug) console.error(`${colors.red('Error:')} unparsable content`)
+        if (debug) console.error(`${colors.red('Error:')} unparsable content`)
     }
 
     console.log(prettyoutput(input, options))
 }
 
-if (program.args.length) {
-    // First parameter is the file to read and parse
-    const filename = program.args[0]
+if (files.length) {
+    const filename = files[0]
     try {
         renderInput(fs.readFileSync(filename, 'utf8'))
     } catch {
@@ -42,8 +93,6 @@ if (program.args.length) {
         process.exit(1)
     }
 } else {
-    // Read input stream
-
     let streamData = ''
 
     process.stdin.resume()
