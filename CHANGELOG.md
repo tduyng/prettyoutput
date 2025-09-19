@@ -1,5 +1,22 @@
 # What's changed
 
+## [2.0.3](https://github.com/tduyng/prettyoutput/compare/v2.0.2..v2.0.3) - 2025-09-19
+
+### 🚀 Features
+
+- *(cli)* Remove commander.js, use native argv from nodejs - ([a595696](https://github.com/tduyng/prettyoutput/commit/a5956965cb9b6eb1186d4d96689be3e720d51c15))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(bench)* Update benchmarks - ([ccea560](https://github.com/tduyng/prettyoutput/commit/ccea560d157f546ceb881fb925e8d682526900a6))
+- *(package)* Fix git urls - ([633a73e](https://github.com/tduyng/prettyoutput/commit/633a73e09f9a3556be0c651d5afa8220e7d0c085))
+- *(readme)* Change color badges - ([e12fc58](https://github.com/tduyng/prettyoutput/commit/e12fc58c6474e934f676d6909608450d03c5bb55))
+- *(release)* V2.0.3 - ([da00b3b](https://github.com/tduyng/prettyoutput/commit/da00b3bad2b7feb235caae1454e90b55ecb6d146))
+- *(release)* Add run-name to display release version on Github actions - ([e620c02](https://github.com/tduyng/prettyoutput/commit/e620c0222b8348f12a359930d02a12652c61f342))
+- Add nodejs 24.x to test - ([0315743](https://github.com/tduyng/prettyoutput/commit/0315743435b7f0f2271df249c7f5a28de16abae7))
+
+# What's changed
+
 ## [2.0.2](https://github.com/tduyng/prettyoutput/compare/v2.0.1..v2.0.2) - 2025-07-29
 
 ### 🚀 Features
