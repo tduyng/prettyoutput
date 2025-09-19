@@ -132,10 +132,6 @@ console.log(prettyOutput(data, options, 2))
 
 You can also use prettyoutput directly from the command line to format files or standard input.
 
-## CLI Usage
-
-You can also use prettyoutput directly from the command line to format files or standard input.
-
 ### Available Aliases
 
 There are multiple aliases available for the CLI, allowing you to use the command that best fits your workflow:
