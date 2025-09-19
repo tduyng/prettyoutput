@@ -2,16 +2,26 @@
 
 **@tduyng/prettyoutput** is a fast, customizable library for formatting JavaScript/JSON objects into a human-readable, YAML-style output.
 
-[![Version npm](https://img.shields.io/npm/v/@tduyng/prettyoutput.svg?style=flat-square)](https://www.npmjs.com/package/@tduyng/prettyoutput)
-[![npm Downloads](https://img.shields.io/npm/dm/@tduyng/prettyoutput.svg?style=flat-square)](https://npmcharts.com/compare/@tduyng/prettyoutput?minimal=true)
-[![build status](https://github.com/tduyng/prettyoutput/actions/workflows/ci.yaml/badge.svg)](https://github.com/tduyng/prettyoutput/actions/workflows/ci.yml)
-[![Coverage Status](https://coveralls.io/repos/github/tduyng/prettyoutput/badge.svg?branch=2.0)](https://coveralls.io/github/tduyng/prettyoutput?branch=master)
+<p align="left">
+  <a href="https://www.npmjs.com/package/@tduyng/prettyoutput">
+    <img alt="npm version" title="npm package version" src="https://img.shields.io/npm/v/@tduyng/prettyoutput?style=for-the-badge&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41&logo=npm"/>
+  </a>
+  <a href="https://npmcharts.com/compare/@tduyng/prettyoutput?minimal=true">
+    <img alt="npm downloads" title="Monthly downloads" src="https://img.shields.io/npm/dm/@tduyng/prettyoutput?style=for-the-badge&color=F5E0DC&logoColor=D9E0EE&labelColor=302D41&logo=npm"/>
+  </a>
+  <a href="https://github.com/tduyng/prettyoutput/actions/workflows/ci.yaml">
+    <img alt="build status" title="CI/CD Pipeline Status" src="https://img.shields.io/github/actions/workflow/status/tduyng/prettyoutput/ci.yaml?style=for-the-badge&color=DDB6F2&logoColor=D9E0EE&labelColor=302D41&logo=github-actions"/>
+  </a>
+  <a href="https://coveralls.io/github/tduyng/prettyoutput">
+    <img alt="coverage" title="Code Coverage" src="https://img.shields.io/coveralls/github/tduyng/prettyoutput?style=for-the-badge&color=A6E3A1&logoColor=D9E0EE&labelColor=302D41&logo=coveralls"/>
+  </a>
+</p>
 
 ## Features
 
-- Fast — 2–3x faster than `util.inspect`
-- Configurable — colors, depth, indentation, etc.
-- Cross-platform — Node.js, Deno, Bun, and CLI
+- Fast: 2–3x faster than `util.inspect`
+- Configurable: colors, depth, indentation, etc.
+- Cross-platform: Node.js, Deno, Bun, and CLI
 - ESM and CommonJS support
 - TypeScript-first, with full type safety
 - Zero dependencies
