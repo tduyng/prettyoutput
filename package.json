@@ -1,9 +1,8 @@
 {
-    "author": "Nadim <nadim.boustani@gmail.com> (https://github.com/bnadim)",
     "name": "@tduyng/prettyoutput",
     "description": "Library to format JSON objects into a colorful, YAML-style output. Ideal for pretty printing logs with high performance.",
     "version": "2.0.2",
-    "homepage": "http://github.com/tduyng/pretty-output",
+    "homepage": "http://github.com/tduyng/prettyoutput",
     "keywords": [
         "json",
         "javascript",
@@ -21,6 +20,7 @@
         "json-format",
         "json-pretty-print"
     ],
+    "author": "Nadim <nadim.boustani@gmail.com> (https://github.com/bnadim)",
     "maintainers": [
         {
             "name": "tduyng"
@@ -31,10 +31,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "http://github.com/tduyng/pretty-output.git"
+        "url": "http://github.com/tduyng/prettyoutput.git"
     },
     "bugs": {
-        "url": "http://github.com/tduyng/pretty-output/issues"
+        "url": "http://github.com/tduyng/prettyoutput/issues"
     },
     "type": "module",
     "files": [
