@@ -1,5 +1,14 @@
 # What's changed
 
+## [2.0.4](https://github.com/tduyng/prettyoutput/compare/v2.0.3..v2.0.4) - 2025-09-19
+
+### ⚙️ Miscellaneous Tasks
+
+- *(readme)* Clean readme - ([1a15fe5](https://github.com/tduyng/prettyoutput/commit/1a15fe5f15c53d50612e0acef465688ea618c767))
+- *(release)* V2.0.4 - ([1abfbd8](https://github.com/tduyng/prettyoutput/commit/1abfbd8eefa92c7672b49988a84db98636fc38f7))
+
+# What's changed
+
 ## [2.0.3](https://github.com/tduyng/prettyoutput/compare/v2.0.2..v2.0.3) - 2025-09-19
 
 ### 🚀 Features
