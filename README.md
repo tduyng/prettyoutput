@@ -192,7 +192,7 @@ cat package.json | prettyoutput --indent=4 --depth=5 --noColor
 
 ## Benchmark
 
-Performance is key for logging, and prettyoutput is built to be fast. Compared to alternatives like `util.inspect` and `prettyjson`, it consistently performs 1.x-3.x times faster.
+Performance is key for logging, and prettyoutput is built to be fast. Compared to alternatives like `util.inspect` and `prettyjson`, it consistently performs 2x-3x times faster.
 
 ### Run Benchmarks
 
@@ -202,50 +202,72 @@ pnpm run benchmark
 
 ### Benchmark Results
 
-Tested on Node.js 22.8.0
+Tested on Node.js 24.8.0
 
 ```bash
 LEVELS | KEYS | LOOPS | WEIGHTS
+1      | 20   | 100   | serializable: 0.9    array: 0.3    object: 0.5    multilineString: 0.3    error: 0.2
+
+NAME             | MIN        | MAX           | MEAN       | TOTAL
+prettyoutput     | 6µs 834ns  | 2ms 8µs 875ns | 36µs 267ns | 3ms 626µs 709ns
+prettyjson       | 13µs 792ns | 344µs 875ns   | 26µs 445ns | 2ms 644µs 583ns
+util.inspect     | 10µs 875ns | 150µs 375ns   | 16µs 815ns | 1ms 681µs 588ns
+@poppinss/dumper | 43µs 209ns | 961µs 959ns   | 76µs 326ns | 7ms 632µs 670ns
+--------------------------------------------------------------------------------------------------------------
+
+
+LEVELS | KEYS | LOOPS | WEIGHTS
+2      | 20   | 100   | serializable: 0.9    array: 0.3    object: 0.5    multilineString: 0.3    error: 0.2
+
+NAME             | MIN         | MAX         | MEAN        | TOTAL
+prettyoutput     | 27µs 875ns  | 454µs 83ns  | 42µs 807ns  | 4ms 280µs 793ns
+prettyjson       | 58µs 583ns  | 163µs 541ns | 73µs 734ns  | 7ms 373µs 456ns
+util.inspect     | 101µs 625ns | 583µs 542ns | 123µs 526ns | 12ms 352µs 668ns
+@poppinss/dumper | 171µs 458ns | 510µs 250ns | 207µs 106ns | 20ms 710µs 623ns
+--------------------------------------------------------------------------------------------------------------
+
+
+LEVELS | KEYS | LOOPS | WEIGHTS
 3      | 20   | 100   | serializable: 0.9    array: 0.3    object: 0.5    multilineString: 0.3    error: 0.2
 
-NAME             | MIN                 | MAX                 | MEAN                | TOTAL
-prettyoutput    | 1 ms 417 µs 200 ns  | 35 ms 930 µs 467 ns | 2 ms 5 µs 439 ns    | 200 ms 543 µs 970 ns
-prettyjson       | 4 ms 56 µs 696 ns   | 9 ms 317 µs 632 ns  | 4 ms 473 µs 214 ns  | 447 ms 321 µs 437 ns
-util.inspect     | 3 ms 895 µs 505 ns  | 12 ms 743 µs 60 ns  | 4 ms 463 µs 826 ns  | 446 ms 382 µs 620 ns
-@poppinss/dumper | 12 ms 185 µs 629 ns | 24 ms 81 µs 159 ns  | 14 ms 167 µs 609 ns | 1 s 416 ms 760 µs 966 ns
+NAME             | MIN             | MAX             | MEAN            | TOTAL
+prettyoutput     | 346µs 875ns     | 3ms 814µs 709ns | 460µs 657ns     | 46ms 65µs 759ns
+prettyjson       | 807µs 750ns     | 1ms 256µs 667ns | 899µs 45ns      | 89ms 904µs 586ns
+util.inspect     | 1ms 419µs 625ns | 1ms 874µs 375ns | 1ms 532µs 755ns | 153ms 275µs 587ns
+@poppinss/dumper | 2ms 640µs 584ns | 3ms 596µs 666ns | 2ms 954µs 927ns | 295ms 492µs 722ns
 --------------------------------------------------------------------------------------------------------------
 
 
 LEVELS | KEYS | LOOPS | WEIGHTS
 4      | 20   | 100   | serializable: 0.9    array: 0.3    object: 0.5    multilineString: 0.3    error: 0.2
 
-NAME             | MIN                 | MAX                  | MEAN                | TOTAL
-prettyoutput    | 7 ms 741 µs 194 ns  | 118 ms 124 µs 145 ns | 11 ms 263 µs 170 ns | 1 s 126 ms 317 µs 3 ns
-prettyjson       | 18 ms 281 µs 941 ns | 28 ms 144 µs 657 ns  | 19 ms 861 µs 800 ns | 1 s 986 ms 180 µs 75 ns
-util.inspect     | 28 ms 601 µs 804 ns | 57 ms 71 µs 136 ns   | 31 ms 647 µs 947 ns | 3 s 164 ms 794 µs 787 ns
-@poppinss/dumper | 61 ms 791 µs 290 ns | 94 ms 660 µs 42 ns   | 69 ms 241 µs 879 ns | 6 s 924 ms 187 µs 908 ns
+NAME             | MIN              | MAX              | MEAN             | TOTAL
+prettyoutput     | 3ms 593µs 333ns  | 28ms 998µs 208ns | 4ms 444µs 335ns  | 444ms 433µs 545ns
+prettyjson       | 6ms 779µs 125ns  | 8ms 323µs 292ns  | 7ms 344µs 228ns  | 734ms 422µs 834ns
+util.inspect     | 13ms 944µs 666ns | 23ms 601µs 458ns | 15ms 140µs 162ns | 1s 514ms 16µs 206ns
+@poppinss/dumper | 31ms 645µs 458ns | 44ms 678µs 500ns | 35ms 198µs 832ns | 3s 519ms 883µs 256ns
 --------------------------------------------------------------------------------------------------------------
 
 
 LEVELS | KEYS | LOOPS | WEIGHTS
-4      | 40   | 200   | serializable: 0.9    array: 0.3    object: 0.5    multilineString: 0.3    error: 0.2
+4      | 20   | 200   | serializable: 0.9    array: 0.3    object: 0.5    multilineString: 0.3    error: 0.2
 
-NAME             | MIN                     | MAX                      | MEAN                     | TOTAL
-prettyoutput    | 322 ms 378 µs 833 ns    | 2 s 470 ms 343 µs 997 ns | 408 ms 177 µs 619 ns     | 81 s 635 ms 523 µs 870 ns
-prettyjson       | 413 ms 885 µs 631 ns    | 949 ms 765 µs 323 ns     | 498 ms 554 µs 581 ns     | 99 s 710 ms 916 µs 350 ns
-util.inspect     | 728 ms 839 µs 615 ns    | 1 s 938 ms 281 µs 319 ns | 838 ms 188 µs 569 ns     | 167 s 637 ms 713 µs 859 ns
-@poppinss/dumper | 1 s 389 ms 498 µs 39 ns | 2 s 445 ms 781 µs 141 ns | 1 s 634 ms 909 µs 384 ns | 326 s 981 ms 876 µs 857 ns
+NAME             | MIN              | MAX              | MEAN             | TOTAL
+prettyoutput     | 2ms 472µs 375ns  | 19ms 756µs 416ns | 2ms 841µs 423ns  | 568ms 284µs 792ns
+prettyjson       | 3ms 983µs 584ns  | 5ms 516µs 375ns  | 4ms 419µs 219ns  | 883ms 843µs 868ns
+util.inspect     | 14ms 861µs 417ns | 23ms 170µs 792ns | 16ms 48µs 375ns  | 3s 209ms 675µs 126ns
+@poppinss/dumper | 20ms 774µs 625ns | 28ms 990µs 41ns  | 23ms 617µs 484ns | 4s 723ms 496µs 967ns
 --------------------------------------------------------------------------------------------------------------
 
 
 LEVELS | KEYS | LOOPS | WEIGHTS
-5      | 20   | 100   | serializable: 0.9    array: 0.3    object: 0.5    multilineString: 0.3    error: 0.2
+5      | 10   | 100   | serializable: 0.9    array: 0.3    object: 0.5    multilineString: 0.3    error: 0.2
 
-NAME             | MIN                  | MAX                      | MEAN                    | TOTAL
-prettyoutput    | 201 ms 29 µs 587 ns  | 1 s 651 ms 200 µs 25 ns  | 245 ms 777 µs 771 ns    | 24 s 577 ms 777 µs 190 ns
-prettyjson       | 229 ms 631 µs 36 ns  | 467 ms 527 µs 984 ns     | 269 ms 62 µs 662 ns     | 26 s 906 ms 266 µs 294 ns
-util.inspect     | 828 ms 156 µs 412 ns | 1 s 884 ms 775 µs 777 ns | 920 ms 237 µs 642 ns    | 92 s 23 ms 764 µs 261 ns
-@poppinss/dumper | 889 ms 54 µs 772 ns  | 1 s 323 ms 199 µs 230 ns | 1 s 14 ms 384 µs 206 ns | 101 s 438 ms 420 µs 665 ns
+NAME             | MIN             | MAX             | MEAN            | TOTAL
+prettyoutput     | 540µs 542ns     | 3ms 999µs 667ns | 644µs 326ns     | 64ms 432µs 622ns
+prettyjson       | 968µs 0ns       | 1ms 804µs 625ns | 1ms 105µs 952ns | 110ms 595µs 295ns
+util.inspect     | 2ms 859µs 959ns | 3ms 856µs 541ns | 3ms 128µs 76ns  | 312ms 807µs 666ns
+@poppinss/dumper | 4ms 281µs 167ns | 5ms 567µs 291ns | 4ms 708µs 354ns | 470ms 835µs 455ns
 --------------------------------------------------------------------------------------------------------------
 ```
 

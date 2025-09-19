@@ -89,7 +89,6 @@
         "columnify": "1.6.0",
         "commitlint": "19.8.1",
         "prettyjson": "1.2.5",
-        "prettyoutput": "1.2.0",
         "tsx": "4.20.5",
         "typescript": "5.9.2"
     }

@@ -2,7 +2,6 @@ import util from 'node:util'
 import { dump } from '@poppinss/dumper/console'
 import columnify from 'columnify'
 import prettyjson from 'prettyjson'
-import prettyOutputV1 from 'prettyoutput'
 
 import { prettyOutput } from '../src/index.js'
 import { makeElement } from './fixture.js'
@@ -34,12 +33,6 @@ async function runFunction(loopCount: number, fn: () => void): Promise<number[]>
 async function runPrettyOutput(element: unknown, loopCount: number): Promise<number[]> {
     return runFunction(loopCount, () => {
         prettyOutput(element, { noColor: true, maxDepth: 100 })
-    })
-}
-
-async function runPrettyOutputV1(element: unknown, loopCount: number): Promise<number[]> {
-    return runFunction(loopCount, () => {
-        prettyOutputV1(element, { noColor: true, maxDepth: 100 })
     })
 }
 
@@ -84,21 +77,18 @@ async function makeBenchResults(
 
     // Running the benchmarks
     const prettyOutputDiffs = await runPrettyOutput(element, loopCount)
-    const prettyOutputV1Diffs = await runPrettyOutputV1(element, loopCount)
     const prettyJsonDiffs = await runPrettyJson(element, loopCount)
     const utilInspectDiffs = await runUtilInspect(element, loopCount)
     const dumperDiffs = await runDumper(element, loopCount)
 
     // Calculating the stats
     const prettyOutputStats = stats(prettyOutputDiffs)
-    const prettyOutputV1Stats = stats(prettyOutputV1Diffs)
     const prettyJsonStats = stats(prettyJsonDiffs)
     const utilInspectStats = stats(utilInspectDiffs)
     const dumperStats = stats(dumperDiffs)
 
     const result = [
-        { name: 'prettyoutput2.x', ...prettyStats(prettyOutputStats) },
-        { name: 'prettyoutput1.x', ...prettyStats(prettyOutputV1Stats) },
+        { name: 'prettyoutput', ...prettyStats(prettyOutputStats) },
         { name: 'prettyjson', ...prettyStats(prettyJsonStats) },
         { name: 'util.inspect', ...prettyStats(utilInspectStats) },
         { name: '@poppinss/dumper', ...prettyStats(dumperStats) },
