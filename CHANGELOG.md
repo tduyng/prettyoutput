@@ -1,3 +1,14 @@
+## [2.0.5](https://github.com/tduyng/prettyoutput/compare/v2.0.4..v2.0.5) - 2026-04-03
+
+### ⚙️ Miscellaneous Tasks
+
+- *(changelog)* Remove header - ([e24f5a9](https://github.com/tduyng/prettyoutput/commit/e24f5a9ea6de6f3ebdb2c0cad6e9f5354f0a265e))
+- *(release)* V2.0.5 - ([3cb8edf](https://github.com/tduyng/prettyoutput/commit/3cb8edfc9e4867410ff2b101c695e66bfa9fa137))
+- Use OIDC flow to publish npm now - ([30d8543](https://github.com/tduyng/prettyoutput/commit/30d85432498c3710e5d1ce87f074d9c55d0f2fe6))
+- Use node 24 to run release - ([f38cfdc](https://github.com/tduyng/prettyoutput/commit/f38cfdce14f05605eb784a017667877941849d8d))
+- Clean up tsconfig and build scripts for TypeScript 6 - ([648708f](https://github.com/tduyng/prettyoutput/commit/648708f4ed31fd3f0a578e2fbbb6015da9fb05ca))
+- Update dependencies - ([b5f4afb](https://github.com/tduyng/prettyoutput/commit/b5f4afb58fce0b5670b96d91cf6b823a515366ba))
+
 # What's changed
 
 ## [2.0.3](https://github.com/tduyng/prettyoutput/compare/v2.0.2..v2.0.3) - 2025-09-19
