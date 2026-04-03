@@ -166,5 +166,4 @@ const handleObjectRendering = (
 }
 
 export default prettyOutput
-export { prettyOutput }
-export { prettyOutput as prettyoutput }
+export { prettyOutput, prettyOutput as prettyoutput }
