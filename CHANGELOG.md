@@ -1,3 +1,11 @@
+## [2.0.6](https://github.com/tduyng/prettyoutput/compare/v2.0.5..v2.0.6) - 2026-04-17
+
+### ⚙️ Miscellaneous Tasks
+
+- *(release)* V2.0.6 - ([b5164da](https://github.com/tduyng/prettyoutput/commit/b5164da6f7714d76bcbe820858ce33497350b859))
+- Rename postinstall script to hook - ([b7bfbd7](https://github.com/tduyng/prettyoutput/commit/b7bfbd7a70140df0a728cac62bd61ffe9fb1b38c))
+- Update pnpm action to v5 - ([413d240](https://github.com/tduyng/prettyoutput/commit/413d2408e0aefbeb110657a2f79660a699ab3b84))
+
 ## [2.0.5](https://github.com/tduyng/prettyoutput/compare/v2.0.4..v2.0.5) - 2026-04-03
 
 ### ⚙️ Miscellaneous Tasks
