@@ -70,7 +70,7 @@
         "benchmark-bun": "bun ./benchmark/benchmark.ts",
         "changelog": "git cliff",
         "examples": "tsx ./examples/example.ts",
-        "postinstall": "git config core.hooksPath ./.githooks || true",
+        "hook": "git config core.hooksPath ./.githooks || true",
         "check-typing": "tsc -p tsconfig.json --noEmit"
     },
     "bin": {
