@@ -1,3 +1,10 @@
+## [2.0.7](https://github.com/tduyng/prettyoutput/compare/v2.0.6..v2.0.7) - 2026-05-05
+
+### ⚙️ Miscellaneous Tasks
+
+- *(release)* V2.0.7 - ([fb76308](https://github.com/tduyng/prettyoutput/commit/fb7630856e073a32cbc6f649cb176338dd741df6))
+- Use pnpm 11, remove support node 20, update dev dependencies - ([c7c20c4](https://github.com/tduyng/prettyoutput/commit/c7c20c472a4fca17493a39f4bb6911161fe9c362))
+
 ## [2.0.6](https://github.com/tduyng/prettyoutput/compare/v2.0.5..v2.0.6) - 2026-04-17
 
 ### ⚙️ Miscellaneous Tasks
