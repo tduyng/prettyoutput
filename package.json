@@ -26,9 +26,6 @@
             "name": "tduyng"
         }
     ],
-    "engines": {
-        "node": ">=18"
-    },
     "repository": {
         "type": "git",
         "url": "http://github.com/tduyng/prettyoutput.git"
@@ -80,14 +77,14 @@
         "prettyoutput-cjs": "./bin/pretty_output.cjs"
     },
     "devDependencies": {
-        "@biomejs/biome": "2.4.12",
+        "@biomejs/biome": "2.4.14",
         "@poppinss/dumper": "0.7.0",
         "@types/columnify": "1.5.4",
         "@types/node": "25.6.0",
         "@types/prettyjson": "0.0.33",
         "c8": "11.0.0",
         "columnify": "1.6.0",
-        "commitlint": "20.5.0",
+        "commitlint": "20.5.3",
         "prettyjson": "1.2.5",
         "tsx": "4.21.0",
         "typescript": "6.0.3"
